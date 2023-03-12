@@ -1,25 +1,25 @@
-const botoesCarrossel = document.querySelectorAll(".botao");
-const imgCarrossel = document.querySelectorAll(".imagem");
+const botao = document.querySelectorAll(".botao");
+const imagem = document.querySelectorAll(".imagem");
 let index = 0;
-let intervalo = setInterval(carrosselAutomatico, 5000);
+let intervalo = setInterval(automatico, 5000);
 
-function mudarImagem(novoindex) {
-    botoesCarrossel[index].classList.remove('selecionado');
-    botoesCarrossel[novoindex].classList.add('selecionado');
-    imgCarrossel[index].classList.remove("ativa");
-    imgCarrossel[novoindex].classList.add("ativa");
+function PassarImagem(novoindex) {
+    botao[index].classList.remove('selecionado');
+    botao[novoindex].classList.add('selecionado');
+    imagem[index].classList.remove("ativa");
+    imagem[novoindex].classList.add("ativa");
     index = novoindex;
 }
 
-botoesCarrossel.forEach((botao, i) => {
+botao.forEach((botao, i) => {
     botao.addEventListener('click', () => {
         clearInterval(intervalo);
-        mudarImagem(i);
-        intervalo = setInterval(carrosselAutomatico, 5000);
+        PassarImagem(i);
+        intervalo = setInterval(automatico, 5000);
     });
 });
 
-function carrosselAutomatico() {
-    let novoIndex = (index + 1) % imgCarrossel.length;
-    mudarImagem(novoIndex);
+function automatico() {
+    let novoIndex = (index + 1) % imagem.length;
+    PassarImagem(novoIndex);
 }
